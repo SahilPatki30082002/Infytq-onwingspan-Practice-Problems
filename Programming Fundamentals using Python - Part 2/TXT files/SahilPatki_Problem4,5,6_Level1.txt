@@ -1,0 +1,63 @@
+Name: Sahil Patki
+Roll No: I039
+SAP ID: 70122000072
+Email: sahilpatki1234@gmail.com
+College Email: sahil.patki072@nmims.edu.in
+Department: Artificial Intelligence
+Batch: 3
+
+4)
+#lex_auth_0127135811649044481146
+
+def find_nine(nums):
+    limit = 4 if len(nums) > 4 else len(nums) 
+    for i in range(limit):
+        if nums[i] == 9:
+            return True
+    else:
+        return False
+        
+#if 9 in nums[:4]
+# return true else false
+nums=[1,4]
+print(find_nine(nums))
+
+5)
+def count_digits_letters(sentence):
+    result_list = list()
+    letter = digit =0
+    for i in range(len(sentence)):
+        if sentence[i].isalpha():
+            letter += 1
+        elif sentence[i].isdigit():
+            digit +=1
+    result_list.append(letter)
+    result_list.append(digit)
+  
+    return result_list
+
+sentence="Infosys 123"
+print(count_digits_letters(sentence))
+
+6)
+#lex_auth_0127135869481369601150
+
+def list123(nums):
+    limit = 0
+    length = len(nums)
+    if length < 3:
+        return False
+    else:
+        limit = length - 3 
+    for i in range(limit+1):
+        if nums[i] == 1:
+            if nums[i+1] == 2:
+                if nums[i+2] == 3:
+                    return True
+    else:
+        return False
+    
+    
+
+nums=[1, 2, 1, 2, 1]
+print(list123(nums))

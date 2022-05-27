@@ -1,0 +1,237 @@
+Name: Sahil Patki
+Roll No: I039
+SAP ID: 70122000072
+Email: sahilpatki1234@gmail.com
+College Email: sahil.patki072@nmims.edu.in
+Department: Artificial Intelligence
+Batch: 3
+
+GIVEN BELOW ARE THE SOLUTIONS FOR:
+LEVEL 2 OF PRACTICE PROBLEMS OF "Programming Fundamentals using Python - Part 2"
+
+1) Problem 13
+#lex_auth_0127136008767324161169
+
+def close_number(num1,num2,num3):
+    count_close = 0
+    count_far = 0
+    diff = [num1-num2, num1-num3, num2-num3]
+    for i in diff:
+        if i == 1 or i ==-1 or i == 0:
+            count_close += 1
+        elif i >= 2 or i <= -2:
+            count_far += 1
+    if count_close == 1 and count_far == 2:
+        return True
+    return False
+        
+    
+    
+print(close_number(5,4,2))
+
+----------------
+
+2) Problem 16
+#lex_auth_0127136084107673601177
+
+def rotate_list(input_list,n):
+    #start writing your code here
+    output_list = input_list[-n:] + input_list[:(len(input_list)-n)] 
+    return output_list
+
+input_list= [1,2,3,4,5,6]
+output_list=rotate_list(input_list,4)
+print(output_list)
+
+----------------
+
+3) Problem 21
+#lex_auth_0127136209566679041189
+
+def check_numbers(num1,num2):
+    #start writing your code here
+    num_list = set()
+    for i in range(num1, num2+1):
+        for j in range(num1, i):
+            if i%j == 0:
+                num_list.add(i)
+                break
+    count = len(num_list)
+    return [num_list,count]
+
+num1=2
+num2=20
+print(check_numbers(num1, num2))
+
+----------------
+
+4) Problem 32
+#lex_auth_0127136357122129921205
+
+def check_squares(number):
+    sqrt = int(number ** 0.5)
+    sqrs = []
+    for i in range(1, sqrt+1):
+        sqrs.append(i**2)
+    for i in range(len(sqrs)):
+        for j in range(i, len(sqrs)):
+            if sqrs[i] + sqrs[j] == number:
+                return True
+    return False
+
+number=68
+print(check_squares(number))
+
+----------------
+
+5) Problem 33
+#lex_auth_0127136373866577921209
+
+def two_dig(str_num,singles,tens,teens):
+    num = int(str_num)
+    word = ""
+    dig_tens = int(str_num[2])
+    dig_units = int(str_num[3])
+    rem = num%100
+    if rem>10 and rem<20:
+        return teens[dig_units-1]
+    
+    if dig_tens == 0:
+        word = singles[dig_units]
+    else:
+        word = tens[dig_tens] +" "+ singles[dig_units]
+    return word
+        
+        
+
+def integer_to_english(number):
+    if number>1000 or number < 1:
+        return -1
+    singles = ["", "one", "two", "three","four", "five", "six", "seven", "eight", "nine"]
+    tens = ['', 'ten', 'twenty', 'thirty', 'fourty','fifty','sixty', 'seventy', 'eighty', 'ninty']
+    teens = ['eleven', 'twelve', 'thirteen','fourteen','fifteen', 'sixteen','seventeen','eighteen', 'nineteen']
+    english = ""
+    str_num =  str(number)
+    while(len(str_num)!=4):
+        str_num = "0" + str_num
+    dig_thousands = int(str_num[0])
+    dig_hundreds = int(str_num[1])
+    dig_tens = int(str_num[2])
+    dig_units = int(str_num[3])
+    if dig_thousands!=0:
+        english = singles[dig_thousands] + " thousand"
+    if dig_hundreds != 0:
+        if dig_thousands!=0:
+            english+=" "
+        english += singles[dig_hundreds] + " hundred"
+    if dig_tens!=0 or dig_units!=0:
+        if dig_hundreds != 0 or dig_thousands!=0:
+            english += ' and '
+        english += two_dig(str_num,singles,tens,teens)
+    return english
+
+
+number=212
+print(integer_to_english(number))
+
+-----------------------------
+
+6) Problem 34
+#lex_auth_0127136426924195841210
+
+def check_well_formatted(input_item,list_label):
+    if input_item[0] not in list_label:
+        return False
+    if not isinstance(input_item, list):
+        return False
+    if len(input_item)<2:
+        return False
+        
+    for i in range(1, len(input_item)):
+        if isinstance(input_item[i], list):
+            if check_well_formatted(input_item[i], list_label):
+                continue
+            else:
+                return False
+        elif isinstance(input_item[i], str):
+            continue
+        else:
+            return False
+    return True   
+
+
+input_list1=['Ant', ['Apple', 'Mango'], ['Orange']]
+list_label1=['Ant', 'Apple', 'Orange']
+result=check_well_formatted(input_list1,list_label1)
+if result is True:
+    print("Well formatted")
+else:
+    print("Not Well formatted")
+
+----------------------------------
+
+7) Problem 35
+#lex_auth_0127136447430656001216
+
+def creator(digit,one,five,ten):
+    sequence = ""
+    if digit!=0:
+        if digit>0 and digit<4:
+            for i in range(digit):
+                sequence+=one
+        elif digit == 4:
+            sequence+= one + five
+        elif digit == 5:
+            sequence+= five
+        elif digit>5 and digit<9:
+            sequence+= five
+            for i in range(digit - 5):
+                sequence+= one
+        elif digit == 9:
+            sequence+= one + ten
+    return sequence
+
+def convert_to_roman(num):
+    roman_digit = ""
+    str_num = str(num)
+    while(len(str_num)!=4):
+        str_num = "0" + str_num
+    dig_thousands = int(str_num[0])
+    dig_hundreds = int(str_num[1])
+    dig_tens = int(str_num[2])
+    dig_units = int(str_num[3])
+    if dig_thousands!=0:
+        for i in range(dig_thousands):
+            roman_digit+="M"
+    roman_digit += creator(dig_hundreds, "C", "D", "M") + creator(dig_tens, "X", "L", "C") + creator(dig_units, "I", "V", "X")
+    
+    return roman_digit
+
+for num in range(1,5000):    
+    print(num," : ",convert_to_roman(num))
+
+-----------------------
+
+8) Problem 36
+#lex_auth_0127136518921830401222
+
+def find_target_positions(input_string, target_word):
+    target_list=[]
+    word_list = input_string.split()
+    for i in range(len(word_list)):
+        if word_list[i] == target_word:
+            target_list.append(i)
+    return target_list
+
+def find_inverted_index(input_string):
+    target_dict={}
+    word_list = input_string.split()
+    set_word_list = list(set(word_list))
+    for i in set_word_list:
+        target_dict[i] = find_target_positions(input_string, i)
+    return target_dict
+
+    
+input_string="we dont need no education we dont need no thought control no we dont"
+result_dict=find_inverted_index(input_string)
+print(result_dict)

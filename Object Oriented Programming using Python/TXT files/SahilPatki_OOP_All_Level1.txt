@@ -1,0 +1,222 @@
+Name: Sahil Patki
+Roll No: I039
+SAP ID: 70122000072
+Email: sahilpatki1234@gmail.com
+College Email: sahil.patki072@nmims.edu.in
+Department: Artificial Intelligence
+Batch: 3
+
+GIVEN BELOW ARE THE SOLUTIONS FOR:
+LEVEL 1 OF PRACTICE PROBLEMS OF "Object Oriented Programming using Python"
+
+1) Problem 1
+
+#lex_auth_0127390120635678722716
+
+class Purchase:
+    list_of_items = ["Cake", "Soap", "Jam", "Cereal", "Hand Sanitizer", "Biscuits", "Bread"]
+    list_of_count_of_each_item_sold = [0, 0, 0, 0, 0, 0, 0, 0]
+    def __init__(self):
+        self.__items_purchased = []
+        self.__item_on_offer = None
+        
+    def provide_offer(self):
+        offer_item = 'HAND SANITIZER'
+        for i in Purchase.list_of_items:
+            if i.lower() == offer_item.lower():
+                ind = Purchase.list_of_items.index(i)
+                break
+        Purchase.list_of_count_of_each_item_sold[ind] += 1
+        self.__item_on_offer = offer_item
+        
+    def get_item_on_offer(self):
+        return self.__get_item_on_offer
+        
+    def get_items_purchased(self):
+        return self.__get_items_purchased
+        
+    def sell_items(self, list_of_items_to_be_purchased):
+        for item in list_of_items_to_be_purchased:
+            for i in Purchase.list_of_items:
+                if item.lower() == i.lower():
+                    if item.lower() == "soap":
+                        self.provide_offer()
+                    index = Purchase.list_of_items.index(i)
+                    self.__items_purchased.append(i)
+                    Purchase.list_of_count_of_each_item_sold[index] += 1 
+                    break
+                    
+    @staticmethod 
+    def find_total_items_sold():
+        return sum(Purchase.list_of_count_of_each_item_sold)
+        
+p1 = Purchase()
+Purchase.list_of_items = ['Apple', 'Biscuits', 'Chocolates', 'Jam', 'Butter', 'Milk', 'Soap', 'Hand Sanitizer']
+p1.sell_items(['JAM', 'CHOcolates', 'Ghee', 'Soap'])
+
+--------------------------------------------------------------------------------------------------------------------
+
+2) Problem 2
+
+#lex_auth_0127390295941775362719
+
+class Dog:
+    dog_breed_dict = {'Labrador Retriever': 5, 'German Shepherd': 12, 'beagle': 10}
+    counter = 100
+    def __init__(self, breed_list, accessories_required):
+        self.__dog_id_list = []
+        self.__breed_list = breed_list
+        self.__accessories_required = accessories_required
+        self.__price = 0
+    
+    def get_dog_id_list(self):
+        return self.__dog_id_list
+    def get_breed_list(self):
+        return self.__breed_list
+    def get_accessories_required(self):
+        return self.__accessories_required
+    def get_price(self):
+        return self.__price
+    def get_dog_price(self, breed):
+        breed_price = {'Labrador Retriever': 800, 'German Shepherd': 1230, 'Beagle': 650}
+        return breed_price[breed]
+    
+    def validate_breed(self):
+        for i in self.__breed_list:
+            if i not in Dog.dog_breed_dict.keys():
+                return False
+        return True
+                
+    def validate_quantity(self):
+        for i in self.__breed_list:
+            if Dog.dog_breed_dict[i] == 0:
+                return False
+        return True
+        
+    def generate_dog_id(self, breed):
+        id = ""
+        Dog.counter+=1
+        id = str(breed[0]) + str(Dog.counter)
+        return id
+    def calculate_total_price(self):
+        if not self.validate_breed():
+            return -1
+        if not self.validate_quantity():
+            return -2
+        for i in self.__breed_list:
+            Dog.dog_breed_dict[i]-=1
+            self.__dog_id_list.append(self.generate_dog_id(i))
+            self.__price += self.get_dog_price(i)
+        if self.__accessories_required:
+            self.__price += 350
+        if self.__price > 1500:
+            self.__price -= 0.05*self.__price
+
+--------------------------------------------------------------------------------------------------------------------
+
+3) Problem 4
+#lex_auth_01274096553236070462
+#Start writing you code here
+class Tollbooth:
+    
+    def __init__(self):
+        self.__no_of_vehicle = 0
+        self.__total_amount = 0
+        
+    def calculate_amount(self, vehicle_type):
+        toll_details = {'car':70, 'bus': 100, 'truck': 150, 'other': 70}
+        if vehicle_type.lower() in toll_details.keys():
+            self.__total_amount += toll_details[vehicle_type.lower()]
+        else:
+            self.__total_amount += toll_details["other"]
+        
+    def count_vehicle(self):
+        self.__no_of_vehicle += 1
+        
+    def collect_toll(self, owner_type, vehicle_type):
+        if owner_type.lower() == "vip":
+            self.count_vehicle()
+        else:
+            self.count_vehicle()
+            self.calculate_amount(vehicle_type)
+            
+    def get_no_of_vehicle(self):
+        return self.__no_of_vehicle
+    def get_total_amount(self):
+        return self.__total_amount
+
+--------------------------------------------------------------------------------------------------------------------
+
+4) Problem 5
+#lex_auth_012752531983671296301
+#Start writing you code here
+import time
+from time import strftime as t
+from datetime import date, timedelta
+class GarmentOrder:
+    garment_dict = {"shirt":[45,400,30],"trousers":[250,500,25],"saree":[500,750,10],"jersey": [750,200,5]}
+    def __init__(self, cloth_type, no_of_piece):
+        self.__cloth_type = cloth_type
+        self.__no_of_piece = no_of_piece
+        self.__order_date = time.strftime("%d/%m/%Y")
+        self.__delivery_date = None
+    
+    def get_cloth_type(self):
+        return self.__cloth_type
+    def get_no_of_piece(self):
+        return self.__no_of_piece
+    def get_order_date(self):
+        return self.__order_date
+    def get_delivery_date(self):
+        return self.__delivery_date
+        
+    def calculate_amount(self):
+        total = 0
+        total += GarmentOrder.garment_dict[self.get_cloth_type()][1] * self.get_no_of_piece()
+        return total
+        
+    def update_stock(self):
+        d = date.today() + timedelta(days = GarmentOrder.garment_dict[self.get_cloth_type()][2])
+        self.__delivery_date = d.strftime("%d/%m/%Y")
+        GarmentOrder.garment_dict[self.get_cloth_type()][0] -= self.get_no_of_piece()
+        
+    def take_order(self):
+        # self.__cloth_type = self.get_cloth_type().lower(
+        if self.get_cloth_type() not in GarmentOrder.garment_dict.keys():
+            return -1
+        if GarmentOrder.garment_dict[self.get_cloth_type()][0] < self.get_no_of_piece():
+            return -1
+        self.update_stock()
+        return self.calculate_amount()
+    
+g = GarmentOrder('SAREE', 15)
+GarmentOrder.garment_dict={'trousers': [40, 600, 30], 'jersey': [15, 500, 10], 'shirt': [70, 800, 40], 'saree': [25, 1000, 20]}
+g.take_order()
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+5) Problem 10
+#lex_auth_012752542731378688302
+#Start writing you code here
+
+class Laptop:
+    def __init__(self, grcode, expiry):
+        self.__grcode = grcode
+        self.__expiry = expiry
+    
+    def get_expiry(self):
+        return self.__expiry
+    def get_grcode(self):
+        return self.__grcode
+
+class Scanner:
+    def __init__(self, emp_laptop_dict):
+        self.__emp_laptop_dict = emp_laptop_dict
+        #{emp_id: lap.qr, ....}
+        
+    def scan(self, empid, laptop):
+        if empid not in self.__emp_laptop_dict.keys():
+            return False
+        if not laptop.get_expiry():
+            return True
+        return False

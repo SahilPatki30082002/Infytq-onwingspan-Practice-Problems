@@ -1,0 +1,375 @@
+Name: Sahil Patki
+Roll No: I039
+SAP ID: 70122000072
+Email: sahilpatki1234@gmail.com
+College Email: sahil.patki072@nmims.edu.in
+Department: Artificial Intelligence
+Batch: 3
+
+GIVEN BELOW ARE THE SOLUTIONS FOR:
+LEVEL 1 OF PRACTICE PROBLEMS OF "Programming Fundamentals using Python - Part 2"
+
+1) Problem 1
+#lex_auth_0127135739583692801137
+
+from pickletools import string1
+
+
+def add_string(str1):
+    ending = ""
+    if len(str1)>=3:
+        ending = str1[-3:]
+        if ending == "ing":
+            ending = "ly"
+        else:
+            ending = "ing"
+    return str1 + ending
+
+str1="go"
+print(add_string(str1))
+
+---------------------------------------
+
+2) Problem 2
+#lex_auth_0127135773590405121141
+
+def bracket_pattern(input_str):
+    open = 0 
+    close = 0 
+    op = True
+    for i in input_str:
+        if i == "(":
+            open += 1
+        else:
+            close += 1
+    if open != close:
+        return False
+    if input_str[0] == ")" or input_str[len(input_str)-1] == "(":
+        return False
+    return True
+
+    
+input_str="(())("
+print(bracket_pattern(input_str))
+
+------------------------------------------------------------------------------------------------------------------
+
+3) Problem 3
+#lex_auth_0127135787454873601143
+
+def create_new_dictionary(prices):
+    new_dict = {}
+    for i in prices.keys():
+        if prices[i] > 200:
+            new_dict[i] = prices[i]
+    return new_dict
+
+prices ={ 'MANGO': 150.45,'POMOGRANATE': 250.67, 'BANANA': 20.55,'CHERRY': 500.10,'ORANGE': 200.75}
+print(create_new_dictionary(prices))
+
+------------------------------------------------------------------------
+
+4) Problem 4
+#lex_auth_0127135811649044481146
+
+def find_nine(nums):
+    limit = 4 if len(nums) > 4 else len(nums) 
+    for i in range(limit):
+        if nums[i] == 9:
+            return True
+    else:
+        return False
+        
+#if 9 in nums[:4]
+# return true else false
+nums=[1,4]
+print(find_nine(nums))
+
+--------------------------------------------------------------
+
+5) Problem 5
+def count_digits_letters(sentence):
+    result_list = list()
+    letter = digit =0
+    for i in range(len(sentence)):
+        if sentence[i].isalpha():
+            letter += 1
+        elif sentence[i].isdigit():
+            digit +=1
+    result_list.append(letter)
+    result_list.append(digit)
+  
+    return result_list
+
+sentence="Infosys 123"
+print(count_digits_letters(sentence))
+
+-----------------------------------------------------------------
+
+6) Problem 6
+#lex_auth_0127135869481369601150
+
+def list123(nums):
+    limit = 0
+    length = len(nums)
+    if length < 3:
+        return False
+    else:
+        limit = length - 3 
+    for i in range(limit+1):
+        if nums[i] == 1:
+            if nums[i+1] == 2:
+                if nums[i+2] == 3:
+                    return True
+    else:
+        return False
+    
+    
+
+nums=[1, 2, 1, 2, 1]
+print(list123(nums))
+
+---------------------------------------------------------------------
+
+7) Problem 7
+#lex_auth_0127135857243832321154
+
+def seed_no(number,ref_no):
+    digits = [int(x) for x in str(number)]
+    prod1 = 1
+    for i in digits:
+        prod1 *= i
+    total = prod1 * number
+    if total == ref_no:
+        return True
+    else:
+        return False
+    
+number=124
+ref_no=738
+print(seed_no(number,ref_no))
+
+-----------------------------------------------------------------------------
+
+8) Problem 8
+#lex_auth_0127135929511936001157
+import numpy as np
+def calculate_net_amount(trans_list):
+    net_amount = 0
+    for i in trans_list:
+        if i[0] == "D":
+            net_amount += int(i[2:])
+        else:
+            net_amount -= int(i[2:])
+
+    return net_amount
+
+trans_list=["D:300","D:200","W:200","D:100"]
+print(calculate_net_amount(trans_list))
+
+-----------------------------------------------------------------------------
+
+9) Problem 9
+#lex_auth_0127135904626688001159
+
+def generate_dict(number):
+	#start writing your code here
+	new_dict = {}
+	for i in range(1,number+1):
+	    new_dict[i] = i**2	
+	return new_dict
+
+number=20
+print(generate_dict(number))
+
+-----------------------------------------------------------------------------
+
+10) Problem 10
+#lex_auth_0127135945621340161163
+
+def string_both_ends(input_string):
+    new_string = ""
+    if len(input_string) < 2:
+        return -1
+    new_string = input_string[:2] + input_string[-2:]
+    return new_string
+    
+input_string="w3w"
+print(string_both_ends(input_string))
+
+-----------------------------------------------------------------------------
+
+11) Problem 11
+#lex_auth_0127136021907046401165
+
+def find_upper_and_lower(sentence):
+    low = upper = 0
+    result_list = []
+    for i in list(sentence):
+        if i.isalpha():
+            if i.islower():
+                low += 1
+            if i.isupper():
+                upper += 1
+    result_list.append(upper)
+    result_list.append(low)
+    return result_list
+
+sentence="Come Here"
+print(find_upper_and_lower(sentence))
+
+-----------------------------------------------------------------------------
+
+12) Problem 12
+#lex_auth_0127136011356405761166
+
+def generate_sentences(subjects,verbs,objects):
+	sentence_list = []
+	for i in subjects:
+	    for j in verbs:
+	        for k in objects:
+	            sentence_list.append(i+" "+j+" "+k)
+	return sentence_list
+
+subjects=["I","You"]
+verbs=["love", "play"]
+objects=["Hockey","Football"]
+print(generate_sentences(subjects,verbs,objects))
+
+-----------------------------------------------------------------------------
+
+13) Problem 15
+#lex_auth_0127136075580375041172
+
+def check_22(num_list):
+    for i in range(len(num_list)-1):
+        if num_list[i] == 2 and num_list[i+1] == 2:
+            return True
+    return False
+        
+print(check_22([3,2,5,1,2,1,2,2]))
+
+-----------------------------------------------------------------------------
+
+14) Problem 23
+#lex_auth_0127136251125350401190
+
+def divisible_by_sum(number):
+    num = number
+    sum = 0
+    while num!=0:
+        rem = num%10
+        sum += rem
+        num//=10
+    if number%sum == 0:
+        return True
+    else:
+        return False
+
+    
+number=42
+print(divisible_by_sum(number))
+
+-----------------------------------------------------------------------------
+
+15) Problem 24
+#lex_auth_0127136213490565121191
+
+def find_gcd(num1,num2):
+    if num1 == 0:
+        return num2
+    else:
+        return find_gcd(num2%num1, num1)
+    
+
+num1=45
+num2=9
+print(find_gcd(num1,num2))
+
+-----------------------------------------------------------------------------
+
+16) Problem 25
+#lex_auth_0127136291543285761194
+
+def list_of_count(word_list):
+    count_list = []
+    for i in word_list:
+        count_list.append(len(i))
+    
+    return count_list
+
+word_list=["COme","here"]
+print(list_of_count(word_list))
+
+-----------------------------------------------------------------------------
+
+17) Problem 26
+#lex_auth_0127136253311385601197
+
+def check_occurence(string):
+    if string.count('Jet')+string.count('jet') == string.count('Mat')+string.count('mat'):
+        return True
+    else:
+        return False
+        
+string="Jet on the Mat but mat is too long"
+print(check_occurence(string))
+
+-----------------------------------------------------------------------------
+
+18) Problem 27
+#lex_auth_0127136303145779201199
+
+def check_for_ten(num1,num2):
+    if num1 == 10 or num2 == 10:
+        return True
+    if num1+num2 == 10:
+        return True
+    return False
+    
+print(check_for_ten(10,9))
+
+-----------------------------------------------------------------------------
+
+19) Problem 29
+#lex_auth_0127136357873991681201
+def exchange_list(number_list):
+    length = len(number_list)
+    half1 = number_list[0:length//2]
+    half2 = number_list[length//2:length]
+    half2.reverse()
+    number_list = half2 + half1
+
+    return number_list
+     
+number_list=[1,2,3,4,5,6]
+print(exchange_list(number_list))
+
+-----------------------------------------------------------------------------
+
+20) Problem 31
+#lex_auth_0127136332814499841204
+
+def sum_of_elements(num_list,number):
+    result_sum = 0
+    occ = [i for i,num in enumerate(num_list) if num==number]
+    ignore = set()
+    all = set(range(len(num_list)))
+    for i in range(len(occ)):
+        j1 = occ[i]-1
+        j2 = occ[i]+1
+        if occ[i] == 0:
+            j1 = 0
+        if occ[i] == len(num_list)-1:
+            j2 = len(num_list)-1
+        ignore.add(j1)
+        ignore.add(occ[i])
+        ignore.add(j2)
+    accept = all - ignore
+    for i in accept:
+        result_sum+=num_list[i]
+    return result_sum
+      
+num_list=[1,7,3,4,1,7,10,5]
+number=7
+print(sum_of_elements(num_list, number))

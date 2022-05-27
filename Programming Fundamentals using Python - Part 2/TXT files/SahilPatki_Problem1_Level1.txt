@@ -1,0 +1,27 @@
+Name: Sahil Patki
+Roll No: I039
+SAP ID: 70122000072
+Email: sahilpatki1234@gmail.com
+College Email: sahil.patki072@nmims.edu.in
+Department: Artificial Intelligence
+Batch: 3
+
+
+Practice Problem 1 Level 1
+#lex_auth_0127135739583692801137
+
+from pickletools import string1
+
+
+def add_string(str1):
+    ending = ""
+    if len(str1)>=3:
+        ending = str1[-3:]
+        if ending == "ing":
+            ending = "ly"
+        else:
+            ending = "ing"
+    return str1 + ending
+
+str1="go"
+print(add_string(str1))
